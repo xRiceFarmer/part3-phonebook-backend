@@ -10,6 +10,8 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [message, setMessage] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
 
   useEffect(() => {
     phonebook.getAll().then((initialData) => {
@@ -86,7 +88,6 @@ const App = () => {
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value);
   };
-  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
