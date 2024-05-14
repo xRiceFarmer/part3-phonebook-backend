@@ -20,7 +20,9 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
-    const isDuplicate = persons.some((person) => person.name === newName);
+    const isDuplicate = persons.some(
+      (person) => person.name.toLowerCase() === newName.toLowerCase()
+    );
 
     if (isDuplicate) {
       const confirmed = window.confirm(
@@ -30,49 +32,55 @@ const App = () => {
       if (!confirmed) {
         return;
       }
-      const existingPerson = persons.find((person) => person.name === newName);
+      const existingPerson = persons.find(
+        (person) => person.name.toLowerCase() === newName.toLowerCase()
+      );
       const changedPerson = { ...existingPerson, number: newNumber };
+      console.log(existingPerson.id)
       phonebook
         .update(existingPerson.id, changedPerson)
-        .then((updated) => {
+        .then(() => {
           setPersons(
             persons.map((person) =>
-              person.id !== existingPerson.id ? person : updated
+              person.id !== existingPerson.id ? person : changedPerson
             )
           );
+          //console.log('updated')
         })
         .catch((error) => {
           const messageObject = {
             text: `Information of ${existingPerson.name} has been removed from server`,
-            type: 'error'
-          }
+            type: "error",
+          };
+          console.log("fail");
           setMessage(messageObject);
           setTimeout(() => {
             setMessage(null);
           }, 5000);
         });
+    } else {
+      const personObject = {
+        name: newName,
+        number: newNumber,
+      };
+      phonebook.create(personObject).then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber("");
+        console.log("added");
+        const messageObject = {
+          text: `Information of ${returnedPerson.name} has been added to server`,
+          type: "success",
+        };
+        setMessage(messageObject);
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
+      });
     }
-    const personObject = {
-      name: newName,
-      number: newNumber,
-    };
-    phonebook.create(personObject).then((returnedPerson) => {
-      setPersons(persons.concat(returnedPerson));
-      setNewName("");
-      setNewNumber("");
-      console.log('added')
-      const messageObject = {
-        text: `Information of ${returnedPerson.name} has been added to server`,
-        type: 'success'
-      }
-      setMessage(messageObject);
-      setTimeout(() => {
-        setMessage(null);
-      }, 5000);
-    });
   };
   const handleNameChange = (event) => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     setNewName(event.target.value);
   };
   const handleNumberChange = (event) => {
@@ -103,7 +111,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message}/>
+      <Notification message={message} />
 
       <Filter
         key={searchQuery.id}

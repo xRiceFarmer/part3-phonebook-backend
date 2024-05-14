@@ -2,103 +2,23 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
+      "number": "345",
+      "id": "1"
     },
     {
       "name": "Ada Lovelace",
       "number": "39-44-5323523",
-      "id": 2
+      "id": "2"
     },
     {
       "name": "Dan Abramov",
       "number": "12-43-234345",
-      "id": 3
+      "id": "3"
     },
     {
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
-      "id": 4
-    },
-    {
-      "id": "2339",
-      "name": "Arto Helas",
-      "number": "123"
-    },
-    {
-      "id": "3887",
-      "name": "Arto Hellas",
-      "number": "123"
-    },
-    {
-      "id": "8e55",
-      "name": "Arto Hellas",
-      "number": "1343"
-    },
-    {
-      "id": "d3f2",
-      "name": "khang",
-      "number": "123"
-    },
-    {
-      "id": "a072",
-      "name": "khang",
-      "number": "123"
-    },
-    {
-      "id": "0929",
-      "name": "khang",
-      "number": "345"
-    },
-    {
-      "id": "1aa7",
-      "name": "Arto Hellas",
-      "number": "456"
-    },
-    {
-      "id": "76cd",
-      "name": "Arto Hellas",
-      "number": "56456"
-    },
-    {
-      "id": "4cff",
-      "name": "Ada Lovelace",
-      "number": "234"
-    },
-    {
-      "id": "08a5",
-      "name": "hy",
-      "number": "456"
-    },
-    {
-      "id": "c258",
-      "name": "hy",
-      "number": "456"
-    },
-    {
-      "id": "7c2e",
-      "name": "heyyy",
-      "number": "5678"
-    },
-    {
-      "id": "0385",
-      "name": "heyyy",
-      "number": "5678"
-    },
-    {
-      "id": "6f6d",
-      "name": "khang",
-      "number": "1234"
-    },
-    {
-      "id": "ab34",
-      "name": "khang",
-      "number": "123"
-    },
-    {
-      "id": "46c7",
-      "name": "heyy",
-      "number": "555"
+      "id": "4"
     }
   ]
 }
