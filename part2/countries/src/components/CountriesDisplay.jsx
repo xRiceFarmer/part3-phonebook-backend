@@ -1,14 +1,32 @@
-const CountriesDisplay = ({ filteredCountries, showCountry}) => {
+import { useEffect } from "react";
+
+const CountriesDisplay = ({
+  filteredCountries,
+  showCountry,
+  weather,
+  getWeather,
+}) => {
+  useEffect(() => {
+    if (filteredCountries.length === 1) {
+      const country = filteredCountries[0];
+      showCountry(country.name.common, false);
+    }
+  }, [filteredCountries, showCountry]);
+
   if (filteredCountries.length < 11 && filteredCountries.length !== 1) {
     return (
       <ul>
         {filteredCountries.map((country) => (
           <div key={country.id}>
             {country.name.common}
-            <button onClick = {() => {
-                showCountry(country.name.common)
-            }}>show</button> 
-            </div>
+            <button
+              onClick={() => {
+                showCountry(country.name.common, true);
+              }}
+            >
+              show
+            </button>
+          </div>
         ))}
       </ul>
     );
@@ -29,6 +47,18 @@ const CountriesDisplay = ({ filteredCountries, showCountry}) => {
           )}
         </ul>
         <img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+        {weather && (
+          <div>
+            <h2>Weather in {weather.name}</h2>
+            <p>Temperature: {weather.main.temp} °C</p>
+            <p>Weather: {weather.weather[0].description}</p>
+            <p>Wind: {weather.wind.speed} m/s</p>
+            <img 
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
+              alt={weather.weather[0].description}
+            />
+          </div>
+        )}
       </div>
     );
   }
